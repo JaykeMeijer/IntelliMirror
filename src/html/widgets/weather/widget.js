@@ -43,7 +43,6 @@ function Weather(element, id) {
                         < 10 * 60 * 1000) {
                     handler(JSON.parse(data));
                 } else {
-                    console.log('Reloading');
                     $.get(url, {
                         id: '2759794', // Amsterdam
                         APPID: '15e79497893ad73998faa51a71efe8c1',
@@ -67,6 +66,8 @@ function Weather(element, id) {
     this.handleOpenWeatherCurrent = function(data) {
         var elements = document.getElementsByClassName("weather_text");
         elements.item(0).innerHTML = data.weather[0].description;
+
+        console.log(data.wind.deg);
 
         var elements = document.getElementsByClassName("weather_wind");
         var wind = 'Wind: ' + Math.round(data.wind.speed * 3.6 * 10) / 10 +
@@ -169,7 +170,7 @@ function Weather(element, id) {
     }
 
     this.parseWindDir = function(deg) {
-        var lim = Math.ceil(deg / 45) * 45;
+        var lim = (Math.ceil(deg / 45) * 45) % 360;
         switch(lim) {
             case 0:   return 'N';
             case 45:  return  'NE';
