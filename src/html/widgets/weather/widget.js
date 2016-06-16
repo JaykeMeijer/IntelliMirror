@@ -38,10 +38,9 @@ function Weather(element, id) {
         fs.readFile(cachepath, function(err1, data) {
             fs.stat(cachepath, function(err2, stats) {
                 var now = new Date();
-                var created = new Date(stats.mtime);
-
                 if (err1 == undefined &&
-                        now.getTime() - created.getTime() < 10 * 60 * 1000) {
+                        now.getTime() - (new Date(stats.mtime)).getTime()
+                        < 10 * 60 * 1000) {
                     handler(JSON.parse(data));
                 } else {
                     console.log('Reloading');
