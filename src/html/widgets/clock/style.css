@@ -1,0 +1,49 @@
+.widget_clock {
+    display: block;
+    position: absolute;
+    top: 0px;
+    right: 10px;
+    font-family: 'Raleway', sans-serif;
+    padding: 0;
+    margin: 0;
+    width: 320px;
+}
+
+.clock_time {
+    font-size: 100pt;
+    height: 100px;
+    position: relative;
+    text-align: center;
+}
+
+.clock_digit {
+    position: absolute;
+    top: 0px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.clock_time_0 {
+    width: 23%;
+    left: 0%;
+}
+
+.clock_time_1 {
+    width: 23%;
+    left: 23%;
+}
+
+.clock_time_2 {
+    width: 23%;
+    left: 54%;
+}
+
+.clock_time_3 {
+    width: 23%;
+    left: 77%;
+}
+
+.clock_time_sep {
+    width: 8%;
+    left: 46%;
+}

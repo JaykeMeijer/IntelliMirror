@@ -1,0 +1,112 @@
+.widget_weather {
+    display: block;
+    position: absolute;
+    top: 0px;
+    font-family: 'Raleway', sans-serif;
+    width: 400;
+    padding: 0;
+    margin: 0;
+}
+
+.weather_title {
+    position: relative;
+    float: left;
+    min-width: 50%;
+    font-size: 20pt;
+}
+
+.weather_text {
+    min-width: 50%;
+    float: left;
+}
+
+.weather_wind {
+    min-width: 50%;
+    float: left;
+}
+
+.weather_temp {
+    font-size: 50pt;
+    float: right;
+}
+
+.weather_graph {
+    width: 100%;
+    float: left;
+    padding: 0;
+    margin: 0;
+}
+
+.weather_graph table {
+    width: 100%;
+    height: 150px;
+    table-layout: fixed;
+    border-collapse: collapse;
+    padding: 0;
+    margin: 0;
+}
+
+.weather_graph tr {
+    padding: 0;
+    margin: 0;
+}
+
+.weather_graph td {
+    width: 11.75%;
+    padding: 0;
+    margin: 0;
+}
+
+.weather_graph .weather_graph_lm {
+    width: 6%;
+}
+
+.weather_graph .weather_graph_icon {
+    height: 20px;
+}
+
+.weather_graph .weather_graph_icon td {
+    height: 30px;
+    -webkit-filter: invert(100%);
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+}
+
+.weather_graph .weather_graph_graph {
+    height: 100px;
+    position: relative;
+}
+
+.weather_graph .weather_graph_graph td {
+    border: 1px solid #ffffff;
+}
+
+.weather_graph td.weather_graph_graph_left {
+    border: none !important;
+    position: relative;
+    font-size: 10pt;
+    padding: 0px;
+    text-align: right;
+}
+
+.weather_graph td.weather_graph_graph_left .weather_graph_graph_max {
+    position: absolute;
+    top: 0px;
+}
+
+.weather_graph td.weather_graph_graph_left .weather_graph_graph_min {
+    position: absolute;
+    bottom: 0px;
+}
+
+.weather_graph .weather_graph_time {
+    height: 20px;
+    text-align: center;
+}
+
+.weather_graph .templine {
+    transform-origin: 0 100%;
+    height: 2px;
+    background: #ffffff;
+}

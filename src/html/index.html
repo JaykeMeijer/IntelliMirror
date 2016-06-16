@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <title>IntelliMirror</title>
+        <link rel="stylesheet" href="style.css">
+        <link href='https://fonts.googleapis.com/css?family=Raleway:100' rel='stylesheet' type='text/css'>
+    </head>
+
+    <body>
+        <div id='widgets'></div>
+        <script>
+            window.$ = window.jQuery = require('./jquery-3.0.0.min.js');
+            var fs = require('fs');
+            var path = require('path');
+
+            function getDirectories(srcpath) {
+                return fs.readdirSync(srcpath).filter(function(file) {
+                    return fs.statSync(path.join(srcpath, file)).isDirectory();
+                });
+            }
+
+            var dirs = getDirectories(__dirname + '/widgets').reverse();
+            var widgets = [];
+            for (var i = 0; i < dirs.length; i++) {
+                var wpath = path.join(__dirname, 'widgets', dirs[i], 'widget');
+                var widgetcode = require(wpath);
+                var widget = new widgetcode.Widget('widgets', i);
+                widgets.push(widgetcode);
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,26 @@
+.widget_rss {
+    display: block;
+    position: absolute;
+    bottom: 0px;
+
+    font-family: 'Raleway', sans-serif;
+    width: 600;
+    padding: 0;
+    margin: 0;
+}
+
+.rss_title {
+    position: relative;
+    float: left;
+    width: 100%;
+    font-size: 20pt;
+}
+
+.rss_headlines {
+    float: left;
+}
+
+.rss_headline {
+    width: 100%;
+    padding: 10px;
+}
