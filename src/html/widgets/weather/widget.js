@@ -93,7 +93,12 @@ function Weather(element, id) {
                                             '"></td>');
 
             // Determine rain. We assume a max of 100mm in 3 hours
-            var rainfactor = Math.min(elem.rain['3h'], 50) / 50 * 100;
+            if (rain in elem) {
+                var rainfactor = Math.min(elem.rain['3h'], 50) / 50 * 100;
+            } else {
+                var rainfactor = 0;
+            }
+            
             var bgstyle = 'background: linear-gradient(180deg, #000000 ' +
                           (100 - rainfactor).toString() + '%, #888888 ' +
                           rainfactor + '%);';

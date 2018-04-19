@@ -11,6 +11,7 @@
 
 .clock_time {
     font-size: 100pt;
+    font-weight: bold;
     height: 100px;
     position: relative;
     text-align: center;
