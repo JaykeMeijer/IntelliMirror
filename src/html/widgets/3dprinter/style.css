@@ -1,8 +1,8 @@
 .widget_3dprinter {
     display: block;
     position: absolute;
-    bottom: 0px;
-    right: 10px;
+    bottom: 50%;
+    left: 10px;
     font-family: 'Raleway', sans-serif;
     width: 300;
     padding: 0;
@@ -24,11 +24,11 @@
 .printer_progressbar_done {
     background-color: white;
     width: 30%;
-    height: 24px;
+    height: 15px;
 }
 
 .printer_progressbar {
-    background-color: lightgray;
+    background-color: rgb(50, 50, 50);
     width: 80%;
     float: left;
 }
