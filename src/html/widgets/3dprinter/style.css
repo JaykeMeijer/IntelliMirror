@@ -1,0 +1,34 @@
+.widget_3dprinter {
+    display: block;
+    position: absolute;
+    bottom: 0px;
+    right: 10px;
+    font-family: 'Raleway', sans-serif;
+    width: 300;
+    padding: 0;
+    margin: 0;
+    font-weight: bold;
+}
+
+.printer_title {
+    position: relative;
+    float: left;
+    min-width: 50%;
+    font-size: 20pt;
+}
+
+.printer_progress {
+    text-align: right;
+}
+
+.printer_progressbar_done {
+    background-color: white;
+    width: 30%;
+    height: 24px;
+}
+
+.printer_progressbar {
+    background-color: lightgray;
+    width: 80%;
+    float: left;
+}
