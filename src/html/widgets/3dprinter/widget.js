@@ -29,7 +29,8 @@ function Printer(element, id) {
             url: url,
             type: "GET",
             beforeSend: function(xhr) {xhr.setRequestHeader('X-Api-Key', APIkey)},
-            success: handler
+            success: handler,
+            error: function() {handler({data: {state: "Error"}})}  // Trigger hide logic
         });
     }
 
