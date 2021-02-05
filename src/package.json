@@ -1,5 +1,8 @@
 {
     "name": "IntelliMirror",
     "version": "0.0.1",
-    "main": "main.js"
+    "main": "main.js",
+    "dependencies": {
+        "electron": "^11.2.2"
+    }
 }
