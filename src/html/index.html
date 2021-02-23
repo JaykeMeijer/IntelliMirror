@@ -11,12 +11,15 @@
             window.$ = window.jQuery = require('./jquery-3.0.0.min.js');
             var fs = require('fs');
             var path = require('path');
+            var redis = require('redis');
 
             function getDirectories(srcpath) {
                 return fs.readdirSync(srcpath).filter(function(file) {
                     return fs.statSync(path.join(srcpath, file)).isDirectory();
                 });
             }
+
+           command_mapping = {};
 
             var dirs = getDirectories(__dirname + '/widgets').reverse();
             var widgets = [];
@@ -25,7 +28,21 @@
                 var widgetcode = require(wpath);
                 var widget = new widgetcode.Widget('widgets', i);
                 widgets.push(widgetcode);
+	        if ('commands' in widget) {
+		    for (var j = 0; j < widget.commands.length; j++) {
+	                command_mapping[widget.commands[j]] = widget;
+                    }
+	        }
             }
+
+            const subscriber = redis.createClient();
+            subscriber.on("message", function(channel, message) {
+		message = JSON.parse(message);
+		if ('command' in message && message.command in command_mapping) {
+		    command_mapping[message.command].handle_message(message);
+		}
+	    });
+	    subscriber.subscribe("mirror-commands");
         </script>
     </body>
 </html>

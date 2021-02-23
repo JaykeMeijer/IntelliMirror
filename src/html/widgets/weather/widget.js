@@ -11,6 +11,9 @@ function Weather(element, id) {
     this.parentElement = document.getElementById(element);
     this.id = this.name + '_' + id;
     var self = this;
+    this.commands = [
+	'weather'
+    ];
 
     // Build the actual app
     this.build = function(callback) {        
@@ -44,7 +47,8 @@ function Weather(element, id) {
                     handler(JSON.parse(data));
                 } else {
                     $.get(url, {
-                        id: '2759794', // Amsterdam
+			//id: '2759794', // Amsterdam
+                        id: '2759798', // Amstelveen
                         APPID: '15e79497893ad73998faa51a71efe8c1',
                         units: 'metric',
                         lang: 'nl'
@@ -186,6 +190,11 @@ function Weather(element, id) {
             case 270: return  'W';
             case 315: return  'NW';
         }
+    }
+
+    this.handle_message = function(message) {
+        alert("Received "  + message.command);
+	// TODO:  Implement
     }
 
     this.run = function() {
