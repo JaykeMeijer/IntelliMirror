@@ -11,6 +11,11 @@ function RSS(element, id) {
     this.parentElement = document.getElementById(element);
     this.id = this.name + '_' + id;
     var self = this;
+    this.commands = [
+        'show_news',
+        'hide_news'
+    ];
+    this.timeout = null;
 
     // Build the actual app
     this.build = function(callback) {
@@ -23,7 +28,8 @@ function RSS(element, id) {
             $(data).find("item").each(function () {
                 var el = $(this);
                 items.push({'pubdate': new Date(el.find('pubDate').text()),
-                            'title': el.find('title').text()});
+                            'title': el.find('title').text(),
+		            'description': el.find('description').text()});
             });
 
             // Order items
@@ -35,9 +41,41 @@ function RSS(element, id) {
                 $('#' + self.id).find('.rss_headlines').append(
                     '<div class=rss_headline>' + items[i].title +
                     '</div>');
+		$('#' + self.id).find('.rss_detailed').append(
+		    '<div class=rss_detail>' +
+	            '<div class=rss_detail_title>' + items[i].title + '</div>' +
+		    '<div class=rss_detail_summary>' + items[i].description + '</div>'
+		);
             }
         });
         callback();
+    }
+
+    this.handle_message = function(message) {
+        if (message.command == 'show_news') {
+            this.show_overlay();
+            this.timeout = setTimeout(function() {
+		console.log('timeout');
+		self.hide_overlay();
+	        self.timeout = null;
+	    }, 60000);
+        } else if (message.command == 'hide_news') {
+            this.hide_overlay();
+            if (this.timeout != null) {
+		clearTimeout(this.timeout);
+		this.timeout = null;
+            }
+        }
+    }
+
+    this.show_overlay = function() {
+        blur();
+        $('#rss_overlay').css('left', 0);
+    }
+
+    this.hide_overlay = function() {
+        $('#rss_overlay').css('left', '-120%');
+        deblur();
     }
 
     this.run = function() {

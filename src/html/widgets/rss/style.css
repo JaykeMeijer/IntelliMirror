@@ -26,3 +26,20 @@
     width: 100%;
     padding: 10px;
 }
+
+#rss_overlay {
+    left: -120%;
+}
+
+.rss_detail {
+    margin-bottom: 30px;
+}
+
+.rss_detail_title {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
+
+.rss_detail_summary {
+    font-size: 0.9em;
+}
