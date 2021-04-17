@@ -7,11 +7,13 @@
 
     <body>
         <div id='widgets'></div>
+	<div id='blur'></div>
         <script>
             window.$ = window.jQuery = require('./jquery-3.0.0.min.js');
             var fs = require('fs');
             var path = require('path');
             var redis = require('redis');
+
 
             function getDirectories(srcpath) {
                 return fs.readdirSync(srcpath).filter(function(file) {
@@ -35,6 +37,7 @@
 	        }
             }
 
+
             const subscriber = redis.createClient();
             subscriber.on("message", function(channel, message) {
 		message = JSON.parse(message);
@@ -43,6 +46,14 @@
 		}
 	    });
 	    subscriber.subscribe("mirror-commands");
+
+            function blur() {
+		$('#blur').css('opacity', 0.7);
+            }
+
+            function deblur() {
+		$('#blur').css('opacity', 0);
+            }
         </script>
     </body>
 </html>

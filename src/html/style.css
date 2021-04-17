@@ -2,3 +2,33 @@ body {
     background-color: #000000;
     color: #ffffff;
 }
+
+#blur {
+    background-color: #000;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 5000;
+
+    opacity: 0;
+    transition: opacity 0.5s linear;
+}
+
+.overlay {
+    position: fixed;
+    left: 0;
+    width: 85%;
+    top: 0;
+    height: 85%;
+
+    margin: 5%;
+    padding: 20px;
+
+    background-color: #000;
+    z-index: 10000;
+
+    transition: left 0.5s cubic-bezier(1.000, -0.530, 0.405, 1.425);
+}
+

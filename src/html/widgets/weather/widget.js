@@ -12,7 +12,8 @@ function Weather(element, id) {
     this.id = this.name + '_' + id;
     var self = this;
     this.commands = [
-	'weather'
+	'show_weather',
+	'hide_weather'
     ];
 
     // Build the actual app
@@ -68,20 +69,13 @@ function Weather(element, id) {
     }
 
     this.handleOpenWeatherCurrent = function(data) {
-        var elements = document.getElementsByClassName("weather_text");
-        elements.item(0).innerHTML = data.weather[0].description;
-
-        console.log(data.wind.deg);
-
-        var elements = document.getElementsByClassName("weather_wind");
         var wind = 'Wind: ' + Math.round(data.wind.speed * 3.6 * 10) / 10 +
                    ' km/h / ' + self.parseWindSpeed(data.wind.speed) +
                    ' Bft ' + self.parseWindDir(parseInt(data.wind.deg));
-        elements.item(0).innerHTML = wind;
-
-        var elements = document.getElementsByClassName("weather_temp");
         var temp = Math.round(parseFloat(data.main.temp) * 10) / 10;
-        elements.item(0).innerHTML = temp + '&deg;';
+        $('.weather_text').text(data.weather[0].description);
+        $('.weather_wind').text(wind);
+        $('.weather_temp').html(temp + '&deg');
     }
 
     this.handleOpenWeatherForecast = function(data) {
@@ -182,19 +176,33 @@ function Weather(element, id) {
         var lim = (Math.ceil(deg / 45) * 45) % 360;
         switch(lim) {
             case 0:   return 'N';
-            case 45:  return  'NE';
-            case 90:  return  'E';
-            case 135: return  'SE';
-            case 180: return  'S';
-            case 225: return  'SW';
-            case 270: return  'W';
-            case 315: return  'NW';
+            case 45:  return 'NE';
+            case 90:  return 'E';
+            case 135: return 'SE';
+            case 180: return 'S';
+            case 225: return 'SW';
+            case 270: return 'W';
+            case 315: return 'NW';
         }
     }
 
     this.handle_message = function(message) {
-        alert("Received "  + message.command);
-	// TODO:  Implement
+	if (message.command == 'show_weather') {
+	    this.show_overlay();
+	    setTimeout(this.hide_overlay, 10000);
+        } else if (message.command == 'hide_weather') {
+            this.hide_overlay();
+        }
+    }
+
+    this.show_overlay = function() {
+    	blur();
+	$('#weather_overlay').css('left', 0);
+    }
+
+    this.hide_overlay = function() {
+        $('#weather_overlay').css('left', '-120%');
+	deblur();
     }
 
     this.run = function() {

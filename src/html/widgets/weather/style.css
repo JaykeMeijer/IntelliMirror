@@ -111,3 +111,7 @@
     height: 2px;
     background: #ffffff;
 }
+
+#weather_overlay {
+    left: -120%;
+}
