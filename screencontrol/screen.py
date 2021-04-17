@@ -9,7 +9,7 @@ import sys
 
 min_area = 2000
 timeout = 60
-interval = 1
+interval = 2
 
 
 def screen(command):
