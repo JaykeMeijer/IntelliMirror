@@ -13,7 +13,7 @@ function RSS(element, id) {
     var self = this;
     this.commands = [
         'show_news',
-        'hide_news'
+        'hide_all'
     ];
     this.timeout = null;
 
@@ -59,7 +59,7 @@ function RSS(element, id) {
 		self.hide_overlay();
 	        self.timeout = null;
 	    }, 60000);
-        } else if (message.command == 'hide_news') {
+        } else if (message.command == 'hide_all') {
             this.hide_overlay();
             if (this.timeout != null) {
 		clearTimeout(this.timeout);

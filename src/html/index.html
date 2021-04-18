@@ -32,7 +32,11 @@
                 widgets.push(widgetcode);
 	        if ('commands' in widget) {
 		    for (var j = 0; j < widget.commands.length; j++) {
-	                command_mapping[widget.commands[j]] = widget;
+		        var comm = widget.commands[j];
+			if (!(comm in command_mapping)) {
+			    command_mapping[comm] = [];
+                        }
+	                command_mapping[comm].push(widget);
                     }
 	        }
             }
@@ -42,7 +46,10 @@
             subscriber.on("message", function(channel, message) {
 		message = JSON.parse(message);
 		if ('command' in message && message.command in command_mapping) {
-		    command_mapping[message.command].handle_message(message);
+		    var cm = command_mapping[message.command];
+	            for (var i = 0; i < cm.length; i++) {
+                        cm[i].handle_message(message);
+                    }
 		}
 	    });
 	    subscriber.subscribe("mirror-commands");

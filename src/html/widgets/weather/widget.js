@@ -13,7 +13,7 @@ function Weather(element, id) {
     var self = this;
     this.commands = [
 	'show_weather',
-	'hide_weather'
+	'hide_all'
     ];
 
     // Build the actual app
@@ -190,7 +190,7 @@ function Weather(element, id) {
 	if (message.command == 'show_weather') {
 	    this.show_overlay();
 	    setTimeout(this.hide_overlay, 10000);
-        } else if (message.command == 'hide_weather') {
+        } else if (message.command == 'hide_all') {
             this.hide_overlay();
         }
     }
