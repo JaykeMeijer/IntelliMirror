@@ -189,7 +189,7 @@ function Weather(element, id) {
     this.handle_message = function(message) {
 	if (message.command == 'show_weather') {
 	    this.show_overlay();
-	    setTimeout(this.hide_overlay, 10000);
+	    setTimeout(this.hide_overlay, 30000);
         } else if (message.command == 'hide_all') {
             this.hide_overlay();
         }
