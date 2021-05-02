@@ -140,7 +140,7 @@
     font-size: 100pt;    
 }
 
-#weather_overlay .weather_text,.weather_wind {
+#weather_overlay .weather_text, #weather_overlay .weather_wind {
     font-size: 2em;
     margin-bottom: 10px;
 }
